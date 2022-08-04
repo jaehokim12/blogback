@@ -22,19 +22,30 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var service = __importStar(require("./serviceDao"));
-var app = (0, express_1.default)();
-app.get('/', (function (req, res) {
-    service.serviceOne;
-    console.log('req', req);
-    res.send('root');
-}));
-app.listen(4000, function () {
-    console.log('server listening port:4000');
+exports.executeQuery = exports.pool = void 0;
+var mysql = __importStar(require("mysql2"));
+exports.pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'test',
+    password: 'root',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 10,
+    rowsAsArray: true
 });
-exports.default = app;
+var executeQuery = function (query) {
+    if (query === void 0) { query = ''; }
+    exports.pool.getConnection(function (err, conn) {
+        console.log('errr', err);
+        var Query = query;
+        conn.query(Query, function (err, results, fields) {
+            console.log('errr', err);
+            console.log("results:::::", results);
+            console.log("fields:::", fields);
+        });
+        conn.release();
+    });
+};
+exports.executeQuery = executeQuery;

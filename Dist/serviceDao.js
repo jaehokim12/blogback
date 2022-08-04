@@ -22,19 +22,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var service = __importStar(require("./serviceDao"));
-var app = (0, express_1.default)();
-app.get('/', (function (req, res) {
-    service.serviceOne;
-    console.log('req', req);
-    res.send('root');
-}));
-app.listen(4000, function () {
-    console.log('server listening port:4000');
-});
-exports.default = app;
+exports.serviceTwo = exports.serviceOne = void 0;
+var serviceQuery = __importStar(require("./service"));
+var database = __importStar(require("./database"));
+exports.serviceOne = database.executeQuery(serviceQuery.queryone);
+exports.serviceTwo = database.executeQuery(serviceQuery.queryone);
