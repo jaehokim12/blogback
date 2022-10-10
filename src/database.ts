@@ -1,5 +1,6 @@
 import * as mysql from 'mysql2'
-export const pool = mysql.createPool({
+
+ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   database: 'test',
@@ -9,17 +10,19 @@ export const pool = mysql.createPool({
   queueLimit: 10,
   rowsAsArray:true
 })
-export const executeQuery = (query='')=>{
-  pool.getConnection((err:Error,conn)=>{
-    console.log('errr',err)
-    let Query = query
-    conn.query(Query,function(err:Error, results:mysql.ResultSetHeader, fields:mysql.Field) {
-      console.log('errr',err)
-      console.log("results:::::",results) 
-      console.log("fields:::",fields)
-    })
-    conn.release()
-  })}
+export const promisePool = pool.promise();
+// export const executeQuery = (query='')=>{
+//   pool.getConnection((err:Error,conn)=>{
+//     console.log('errr',err)
+//     let Query = query
+//     console.log("Query:::",Query)
+//     conn.query(Query,function(err:Error, results:mysql.ResultSetHeader, fields:mysql.Field) {
+//       console.log('errr',err)
+//       console.log("results:::::",results) 
+//       console.log("fields:::",fields)
+//     })
+//     conn.release()
+//   })}
 
 
 
