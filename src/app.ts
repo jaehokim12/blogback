@@ -1,13 +1,22 @@
-import express from 'express';
-import * as service from './service'
-// service module 에서 service을 가져옴
+import express,{Request,Response} from 'express';
+import http from 'http'
+import * as service from './services/services'
+import authRouter from './routes/authRoutes'
+import cors from 'cors'
+import dotenv from 'dotenv'
+
+dotenv.config()
 const app = express();
-// app.get('/',((req:express.Request,res:express.Response)=>{
-//     service.serviceOne
-//     console.log('req',req)
-//     res.send('root')}))
-app.get('/test',service.serviceOne)
+
+app.use(express.json());
+app.use(cors());
+app.use('/api',authRouter)
+
+const server = http.createServer(app);
+
+
 app.listen(4000,()=>{
     console.log('server listening port:4000')
 })
-export default app;
+
+
