@@ -5,7 +5,9 @@ const router = express.Router()
 const Controllers = controllers
 
 
-router.get('/register',services.serviceOne)
+router.get('/tests',services.servicetest)
+router.post('/register',services.userService)
+
 
 
 export default router
