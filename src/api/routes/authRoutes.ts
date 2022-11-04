@@ -1,6 +1,6 @@
 import express from 'express'
 // import {controllers} from '../controllers/auth/authController'
-import * as services from '../services/services'
+import * as services from '../../controllers/servicescontroller'
 const router = express.Router()
 // const Controllers = controllers
 

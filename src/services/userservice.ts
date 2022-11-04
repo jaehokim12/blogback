@@ -10,7 +10,7 @@ export const findUser = async (mail:mail)=> {
   try {
         const param = mail
         const result = await database.promisePool.query(`select Email from User where Email='${param}'`);
-// console.log('resultss',result[0])
+console.log('resultss',result[0])
 return result[0];
 } catch (err) {
   console.log("err",err)

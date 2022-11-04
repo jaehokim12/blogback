@@ -1,5 +1,5 @@
 import { Request, Response} from 'express'
-import * as serviceDao from '../dao/serviceDao'
+import * as UserService from '../services/userservice'
 
 interface UserInfo{
         username:string,
@@ -11,7 +11,7 @@ export const userService = async ( req:Request,res:Response) => {
         console.log('req body mail',mail)
         let result;
         try{
-         result = await serviceDao.findUser(mail)
+         result = await UserService.findUser(mail)
         console.log('result',result)
         }
         catch (error) {
