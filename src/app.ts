@@ -1,19 +1,24 @@
-import express,{Request,Response} from 'express';
-import * as service from './services/services'
-import authRouter from './routes/authRoutes'
-import cors from 'cors'
-import dotenv from 'dotenv'
 
-    dotenv.config();
-    const app = express();
-    app.use(express.json());
-    app.use(express.urlencoded({extended:true}));
-    app.use(cors());
-    app.use('/api',authRouter)
-    app.listen(4000,()=>{
-        console.log('server listensng port:4000')
-    })
+import express from 'express';
 
+// import Logger from './loaders/logger';
 
-export default app
+async function startServer() {
+  const app = express();
 
+  await require('./loaders').default({ expressApp: app });
+
+  app.listen(4000, () => {
+//     Logger.info(`
+//       ################################################
+//       🛡️  Server listening on port: ${config.port} 🛡️
+//       ################################################
+//     `);
+//   }).on('error', err => {
+//     Logger.error(err);
+//     process.exit(1);
+  });
+
+}
+
+startServer();

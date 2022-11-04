@@ -1,24 +1,21 @@
 
-import * as bcrypt from 'bcryptjs'
-import jsonwebtoken from 'jsonwebtoken'
-import { Request,Response } from 'express';
-import * as UserService from '../../services/services'
-import * as db from '../../database'
+// import * as bcrypt from 'bcryptjs'
+// import jsonwebtoken from 'jsonwebtoken'
+// import { NextFunction, Request,Response } from 'express';
+// import * as UserService from '../../services/services'
+// import * as db from '../../database'
 
 
-export const PostRegister = async (req:Request, res:Response) => {
+// export const PostRegister = async (req:Request, res:Response,next:NextFunction) => {
 
-  try {
-    const userExists = await UserService.userService
-  }
-   catch{
-    return res.status(500).send("Error occured. Please try again");
-   }
-}
-
-
-
-
+//   try {
+//     const userExists = await UserService.userService
+//   }
+//    catch{
+//     return res.status(500).send("Error occured. Please try again");
+//    }
+//    next()
+// }
 
 
     // User.exists({ mail: mail.toLowerCase() });
