@@ -1,6 +1,5 @@
 import express,{Request,Response} from 'express';
-import * as service from './controllers/servicescontroller'
-import router from './api/routes/authRoutes';
+import router from '../src/api/routes/authroutes'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
