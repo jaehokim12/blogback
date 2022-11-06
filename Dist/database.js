@@ -24,12 +24,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.promisePool = void 0;
-var mysql = __importStar(require("mysql2"));
-var pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
+const mysql = __importStar(require("mysql2"));
+const pool = mysql.createPool({
+    host: '127.0.0.1',
+    user: 'test',
     database: 'test',
-    password: 'root',
+    password: 'test',
+    port: 3306,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 10,
