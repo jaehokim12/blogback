@@ -51,7 +51,7 @@ export const registerservice = async ({username, mail ,password}:UserInfo)=> {
             mail,
           },
 
-          `${env.tokenKey}`,
+          `adfb!23`,
 
           {
             expiresIn: "24h",

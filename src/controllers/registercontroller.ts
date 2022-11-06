@@ -9,14 +9,14 @@ interface UserInfo{
 interface QueryResult {
         code:number,
         Rowdata:string,
-        
     }
 
 export const registercontroller = async ( req:Request,res:Response) => {
         
         try {
         let data;
-         data = await service.registerservice(req.body as UserInfo)
+        //  data = await service.registerservice(req.body as UserInfo)
+        data = await service.registerservice(req.body as UserInfo)
          res.status(data.code).json(data.Rowdata)
          
         }
