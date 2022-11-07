@@ -1,6 +1,6 @@
-import * as mysql from 'mysql2'
+import * as mysql from 'mysql2';
 
- const pool = mysql.createPool({
+const pool = mysql.createPool({
   host: '127.0.0.1',
   user: 'test',
   database: 'test',
@@ -9,9 +9,6 @@ import * as mysql from 'mysql2'
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 10,
-  rowsAsArray:true
-})
+  // rowsAsArray: true,
+});
 export const promisePool = pool.promise();
-
-
-

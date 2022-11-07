@@ -1,17 +1,9 @@
-import { Request,Response } from "express"
-import * as service from '../services/registerservice'
-export const logincontroller = async (req:Request,res:Response)=>{
-    
-        
-        let result;
-        try {
-         result = await service.registerservice(req.body)
-        console.log('result',result)
-        }
-        catch (error) {
-                console.log(error)
-                res.status(500).json({error:error})
-        }
+import { Request, Response } from 'express';
+import * as service from '../services/loginservice';
+export const logincontroller = async (req: Request, res: Response) => {
+  let data = await service.loginservice(req, res);
+  //     res.status(data.code).json(data.Rowdata);
+  //     res.status(200);
 
-        res.json({result})
-}
+  //   res.send
+};
