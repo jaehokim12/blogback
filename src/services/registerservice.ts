@@ -32,7 +32,7 @@ export const registerservice = async ({ username, mail, password }: UserInfo) =>
   let data: QueryResult;
   const encryptedPassword = await hash(password, 10);
 
-  // console.log('encryptedPassword',encryptedPassword)
+  // console.log('encryptedPassword', encryptedPassword);
   const user = await database.promisePool.query(
     `insert into User (Username,Email,Passwd) value('${username}','${mail.toLowerCase()}','${encryptedPassword}')`,
   );
@@ -54,7 +54,7 @@ export const registerservice = async ({ username, mail, password }: UserInfo) =>
       expiresIn: '24h',
     },
   );
-  console.log('token', token);
+  // console.log('token', token);
 
   interface QueryResults {
     code: number;

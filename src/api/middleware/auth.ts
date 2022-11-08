@@ -3,6 +3,7 @@ import env from '../../config';
 import { NextFunction, Request, Response } from 'express';
 
 const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+  console.log('req,', req.body);
   let token = req.body.token;
   let user = req.body.user;
   if (!token) {

@@ -5,8 +5,8 @@ import { hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 export const loginservice = async (req: Request, res: Response) => {
+  console.log('req.body', req.body);
   interface UserInfo {
-    username: string;
     mail: string;
     passwords: string;
     token?: string;
@@ -18,7 +18,7 @@ export const loginservice = async (req: Request, res: Response) => {
   }
   try {
     console.log('login event came');
-    const { mail, passwords, username } = req.body as UserInfo;
+    const { mail, passwords } = req.body as UserInfo;
 
     let [result]: any = await database.promisePool.query(`select Username,Email,Passwd from User where Email= ?`, [
       mail,
@@ -31,12 +31,12 @@ export const loginservice = async (req: Request, res: Response) => {
     // res.send();
 
     const comparepasswd = await bcrypt.compare(passwords, userData.Passwd);
-
+    console.log('comparepasswd', comparepasswd);
     if (userData && comparepasswd) {
       console.log('userdatauserdata', userData);
       const token = jwt.sign(
         {
-          userId: username,
+          userId: Username,
           mail,
         },
 
