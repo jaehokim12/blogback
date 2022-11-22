@@ -1,25 +1,25 @@
 import jwt from 'jsonwebtoken';
-import env from '../../config';
+
 import { NextFunction, Request, Response } from 'express';
 
 const verifyToken = (req: Request, res: Response, next: NextFunction) => {
-  console.log('req,', req.body);
-  let token = req.body.token;
-  let user = req.body.user;
-  if (!token) {
-    return res.status(403).send('A token is required for authentication');
-  }
-  try {
-    token = token.replace(/^Bearer\s+/, '');
+    console.log('req,', req.body);
+    let token = req.body.token;
+    let user = req.body.user;
+    if (!token) {
+        return res.status(403).send('A token is required for authentication');
+    }
+    try {
+        token = token.replace(/^Bearer\s+/, '');
 
-    const decoded = jwt.verify(token, `adfb!23`);
-    const decode = jwt.decode(token);
-    req.body.user = decode;
-  } catch (err) {
-    return res.status(401).send('Invalid Token');
-  }
+        const decoded = jwt.verify(token, `adfb!23`);
+        const decode = jwt.decode(token);
+        req.body.user = decode;
+    } catch (err) {
+        return res.status(401).send('Invalid Token');
+    }
 
-  return next();
+    return next();
 };
 
 export default verifyToken;
