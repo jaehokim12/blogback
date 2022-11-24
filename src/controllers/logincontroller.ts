@@ -1,5 +1,10 @@
-import { Request, Response } from 'express';
-import { loginservice } from '../services/loginservice';
-export const logincontroller = async (req: Request, res: Response) => {
-    let data = await loginservice(req, res);
+import { Request, Response, NextFunction } from 'express';
+import { loginService } from '../services/loginservice';
+export const loginController = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        await loginService(req, res);
+    } catch (error) {
+        res.errored;
+    }
+    next();
 };

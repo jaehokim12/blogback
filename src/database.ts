@@ -9,6 +9,6 @@ const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 10,
-    // rowsAsArray: true,
+    rowsAsArray: false,
 });
 export const promisePool = pool.promise();

@@ -4,32 +4,24 @@ import * as bcrypt from 'bcryptjs';
 import { hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { loginDao } from '../dao/loginDao';
-
-export const loginservice = async (req: Request, res: Response) => {
-    console.log('req.body', req.body);
-    interface UserInfo {
-        mail: string;
-        passwords: string;
-        token?: string;
-    }
-    interface dbUserData {
-        Username: string;
-        Email: string;
-        Passwd: string;
-    }
+interface UserInfo {
+    mail: string;
+    passwords: string;
+    token?: string;
+}
+interface dbUserData {
+    Username: string;
+    Email: string;
+    Passwd: string;
+}
+export const loginService = async (req: Request, res: Response) => {
     try {
-        console.log('login event came');
         const { mail, passwords } = req.body as UserInfo;
-
-        // let [result]: any = await database.promisePool.query(`select Username,Email,Passwd from User where Email= ?`, [
-        //     mail,
-        // ]);
-        let [result]: any = await loginDao(mail);
-        let userData: dbUserData = result[0];
+        let userData: dbUserData = await loginDao(mail);
         const { Username, Email, Passwd } = userData;
-        console.log('userData', userData.Email);
-        console.log('userData', userData.Passwd);
-        console.log('userData', userData.Username);
+        console.log('userData', Email);
+        console.log('userData', Passwd);
+        console.log('userData', Username);
         // res.send();
 
         const comparepasswd = await bcrypt.compare(passwords, userData.Passwd);

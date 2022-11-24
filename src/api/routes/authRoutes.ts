@@ -4,8 +4,8 @@ import auth from '../middleware/auth';
 
 const router = express.Router();
 
-router.post('/register', authControllers.registercontroller);
-router.post('/login', authControllers.logincontroller);
+router.post('/register', authControllers.registerController);
+router.post('/login', authControllers.loginController);
 router.get('/test', auth, (req, res) => {
     res.send('request passed');
 });

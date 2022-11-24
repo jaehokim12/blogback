@@ -1,4 +1,4 @@
-import { logincontroller } from './logincontroller';
-import { registercontroller } from './registercontroller';
+import { loginController } from './logincontroller';
+import { registerController } from './registercontroller';
 
-export default { logincontroller, registercontroller };
+export default { loginController, registerController };
