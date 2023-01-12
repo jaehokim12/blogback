@@ -1,11 +1,12 @@
 import express, { Request, Response } from 'express';
-import authControllers from '../../controllers';
+import * as loginController from '../../controller/login';
+import * as registerController from '../../controller/register';
 import auth from '../middleware/auth';
 
 const router = express.Router();
 
-router.post('/register', authControllers.registerController);
-router.post('/login', authControllers.loginController);
+router.post('/register', registerController.register);
+router.post('/login', loginController.login);
 router.get('/test', auth, (req, res) => {
     res.send('request passed');
 });

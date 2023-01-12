@@ -1,5 +1,5 @@
-import * as database from '../database';
-import * as loginQuery from '../query/loginQuery';
+import * as database from '../../database';
+import * as loginQuery from '../query/login';
 type paramType = string;
 export const loginDao = async (mail: paramType) => {
     let [result]: any = await database.promisePool.query(`${loginQuery.findUsers}`, [mail]);

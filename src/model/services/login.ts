@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import * as database from '../database';
+import * as database from '../../database';
 import * as bcrypt from 'bcryptjs';
 import { hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { loginDao } from '../dao/loginDao';
+import { loginDao } from '../dao/login';
 interface UserInfo {
     mail: string;
     passwords: string;
@@ -14,20 +14,15 @@ interface dbUserData {
     Email: string;
     Passwd: string;
 }
-export const loginService = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response) => {
     try {
         const { mail, passwords } = req.body as UserInfo;
         let userData: dbUserData = await loginDao(mail);
         const { Username, Email, Passwd } = userData;
-        console.log('userData', Email);
-        console.log('userData', Passwd);
-        console.log('userData', Username);
-        // res.send();
 
         const comparepasswd = await bcrypt.compare(passwords, userData.Passwd);
-        console.log('comparepasswd', comparepasswd);
+
         if (userData && comparepasswd) {
-            console.log('userdatauserdata', userData);
             const token = jwt.sign(
                 {
                     userId: Username,
