@@ -8,36 +8,44 @@ import { statusCode } from '../../interfaces/IStatus';
 import config from '../../config';
 export const register = async (req: Request, res: Response) => {
     try {
-        const { username, mail, password } = req.body as IUserType.userInfo; // front dataType
-        let userExist = await registerDao.register({ mail });
+        const { name, mail, password } = req.body as IUserType.UserInfo; // front dataType
+
+        // 1. check req.user.email = db.user.email
+        // 1.1 if req.user.email = db.user.email // send status code and end
+        let userExist = await registerDao.register(mail);
+
         if (userExist) {
             return res.status(200).send('already email exist');
         }
+        // 2.if req.user.email != db.user.email // keep going process
+        // 2.1  hash req.user.email
         const encryptedPassword = await hash(password, 10);
-        let result = await registerDao.registerinsert({ username, mail, encryptedPassword });
+        // 2.2  insert req.userdata to db.userdata = {name,email,encrptedpassword}
+        let result = await registerDao.registerinsert({ name, mail, encryptedPassword });
 
         const token = jwt.sign(
             {
-                userId: username,
+                id: name,
                 mail,
             },
 
-            // `adfb!23`,
-            config.tokenkey
-
+            config.tokenkey,
 
             {
                 expiresIn: '24h',
             },
         );
-        let userData: IUserType.userData;
+        let userData: IUserType.UserData;
         userData = {
-            username: username,
+            name: name,
             mail: mail,
             token: token,
         };
+        // 2.3 after insert req.userdata to db.userdata send token with userinfo
         return res.status(200).send(userData);
     } catch {
+        // 3. if occur error process this block,
+        // send to user error status code and message data
         return res.status(500).send('Something went wrong. Please try again');
     }
 };

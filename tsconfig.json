@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        "target": "es2016" /* ts->js 컴파일시 기본 javascript 동작방식. */,
+        "baseUrl": "./src",
+        "target": "es6" /* ts->js 컴파일시 기본 javascript 동작방식. */,
         "module": "commonjs" /* ts->js 컴파일시 모듈을 conmmonjs 방식으로 컴파일한다. */,
         "rootDir": "./src" /* Specify the root folder within your source files. */,
         "outDir": "./Dist" /* Specify an output folder for all emitted files. */,
@@ -13,5 +14,6 @@
     },
 
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts", "./src/*.d.ts"]
+    "exclude": ["node_modules", "**/*.spec.ts", "./src/*.d.ts"],
+    "files": ["./src/customtypes/types.d.ts"]
 }

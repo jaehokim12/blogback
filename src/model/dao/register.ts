@@ -1,24 +1,16 @@
 import * as database from '../../database';
 import * as registerQuery from '../query/register';
+import * as IUserType from '../../interfaces/IUser';
 
-interface UserInfo {
-    mail: string;
-}
-
-interface UserInfos {
-    mail: string;
-    username: string;
-    encryptedPassword: string;
-}
-export const register = async ({ mail }: UserInfo) => {
+export const register = async (mail: IUserType.userMail) => {
     let [result, value]: any = await database.promisePool.query(`${registerQuery.findUser}`, [mail]);
-    console.log('result in dao', result);
+
     return result[0];
 };
 
-export const registerinsert = async ({ username, mail, encryptedPassword }: UserInfos) => {
+export const registerinsert = async ({ name, mail, encryptedPassword }: IUserType.DbUserInfo) => {
     let [result, value]: any = await database.promisePool.query(`${registerQuery.insertUser}`, [
-        username,
+        name,
         mail,
         encryptedPassword,
     ]);

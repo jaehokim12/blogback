@@ -10,8 +10,8 @@ const env = (process.env.NODE_ENV = 'development');
 
 const config = {
     development: {
-        apiport: process.env.PORT,
-        dbhost: process.env.HOST,
+        apiport: process.env.API_PORT,
+        dbhost: process.env.DBHOST,
         dbuser: process.env.DBUSER,
         db: process.env.DB,
         dbpassword: process.env.DBPASSWORD,
@@ -26,6 +26,7 @@ const config = {
         USER: 'test',
     },
 };
+// console.log('config', config.development);
 
 export default config['development'];
 

@@ -12,10 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJson));
 app.use('/api', router);
-app.listen(config.PORT, () => {
+app.listen(config.apiport, () => {
     console.log(`
     ***********************************
-    server listensng port:${config.PORT}
+    server listensng port:${config.apiport}
     ***********************************
     `);
 });
