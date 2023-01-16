@@ -9,8 +9,23 @@ export interface UserData {
     mail: string;
     token: string;
 }
-export interface DbUserInfo {
+export interface UserHashInfo {
     mail: string;
     name: string;
     encryptedPassword: string;
 }
+export interface UserLoginInfo {
+    mail: string;
+    password: string;
+    token?: string;
+}
+export interface DbUserData {
+    dname: string;
+    dmail: string;
+    dpassword: string;
+}
+// export interface UserTokenData {
+//     mail: string;
+//     token: string;
+//     name: string;
+// }

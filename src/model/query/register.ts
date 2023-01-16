@@ -1,2 +1,2 @@
-export const findUser = 'select mail from User where mail=?';
-export const insertUser = 'insert into User (username,mail,password) value(?,?,?)';
+export const selectUserData = 'select dmail from User where dmail=?';
+export const insertUserData = 'insert into User (dname,dmail,dpassword) value(?,?,?)';

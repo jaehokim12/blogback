@@ -12,8 +12,8 @@ export const register = async (req: Request, res: Response) => {
 
         // 1. check req.user.email = db.user.email
         // 1.1 if req.user.email = db.user.email // send status code and end
-        let userExist = await registerDao.register(mail);
-
+        let userExist = await registerDao.findUser(mail);
+        console.log('userExist:::', userExist);
         if (userExist) {
             return res.status(200).send('already email exist');
         }
@@ -21,7 +21,7 @@ export const register = async (req: Request, res: Response) => {
         // 2.1  hash req.user.email
         const encryptedPassword = await hash(password, 10);
         // 2.2  insert req.userdata to db.userdata = {name,email,encrptedpassword}
-        let result = await registerDao.registerinsert({ name, mail, encryptedPassword });
+        let result: IUserType.DbUserData = await registerDao.InsertUser({ name, mail, encryptedPassword });
 
         const token = jwt.sign(
             {
